@@ -551,6 +551,12 @@ body {
   width: 100%;
 }
 
+.mapPopup {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.4rem;
+}
+
 .marker {
   background-image: url('../img/pin.png');
   background-size: cover;
@@ -1222,6 +1228,16 @@ body {
 }
 
 .login-form {
+  margin: 0 auto;
+  max-width: 55rem;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
+  padding: 5rem 7rem;
+  border-radius: 5px;
+}
+
+.signup-form {
   margin: 0 auto;
   max-width: 55rem;
   background-color: #fff;
