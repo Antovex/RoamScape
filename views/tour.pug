@@ -8,7 +8,7 @@ block append head
     script(src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin="")
-    script(defer, src='/js/mapbox.js')
+    script(defer, src='/js/mapbox.js' type='module')
 
 mixin overviewBox(label, text, icon)
     .overview-box__detail

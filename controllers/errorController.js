@@ -23,30 +23,51 @@ const handleJWTExpiredError = () =>
     new AppError('Your token has expired! Please log in again.', 401);
 
 const sendErrorDev = (err, req, res) => {
-    res.status(err.statusCode).json({
-        status: err.status,
-        error: err,
-        message: err.message,
-        stack: err.stack,
+    if (req.originalUrl.startsWith('/api')) {
+        return res.status(err.statusCode).json({
+            status: err.status,
+            error: err,
+            message: err.message,
+            stack: err.stack,
+        });
+    }
+    console.error('ERROR💥: ', err);
+    return res.status(err.statusCode).render('error', {
+        title: 'Something went wrong!',
+        msg: err.message,
     });
 };
 
 const sendErrorProd = (err, req, res) => {
-    // Operational, trusted error: send message to client
-    if (err.isOperational) {
-        res.status(err.statusCode).json({
-            status: err.status,
-            message: err.message,
-        });
-    } else {
+    // For errors while using API
+    if (req.originalUrl.startsWith('/api')) {
+        // Operational, trusted error: send message to client
+        if (err.isOperational) {
+            return res.status(err.statusCode).json({
+                status: err.status,
+                message: err.message,
+            });
+        }
         // Programming or other unknown error: don't leak error details
         // eslint-disable-next-line no-console
         console.error('ERROR💥: ', err);
-        res.status(500).json({
+        return res.status(500).json({
             status: 'error',
             message: 'Something went wrong',
         });
     }
+    // For errors while using Website (Rendered page)
+    if (err.isOperational) {
+        return res.status(err.statusCode).render('error', {
+            title: 'Something went wrong!',
+            msg: err.message,
+        });
+    }
+    console.error('ERROR💥: ', err);
+    return res.status(err.statusCode).render('error', {
+        title: 'Something went wrong!',
+        msg: 'Please try again later.',
+    });
 };
 
 module.exports = (err, req, res, next) => {
@@ -57,6 +78,9 @@ module.exports = (err, req, res, next) => {
         sendErrorDev(err, req, res);
     } else if (process.env.NODE_ENV === 'production') {
         let error = { ...err };
+
+        // error.message = err.message;
+
         if (error.path === '_id') error = handleCastErrorDB(error);
         if (error.code === 11000) error = handleDuplicateFieldsDB(error);
         if (error._message === 'Tour validation failed')

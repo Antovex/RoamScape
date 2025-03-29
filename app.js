@@ -25,13 +25,26 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Further HELMET configuration for Security Policy (CSP)
-const scriptSrcUrls = ['https://unpkg.com/', 'https://tile.openstreetmap.org'];
+const scriptSrcUrls = [
+    'https://unpkg.com/',
+    'https://tile.openstreetmap.org',
+    'https://js.stripe.com',
+    'https://m.stripe.network',
+    'https://*.cloudflare.com',
+];
 const styleSrcUrls = [
     'https://unpkg.com/',
     'https://tile.openstreetmap.org',
     'https://fonts.googleapis.com/',
 ];
-const connectSrcUrls = ['https://unpkg.com', 'https://tile.openstreetmap.org'];
+const connectSrcUrls = [
+    'https://unpkg.com',
+    'https://tile.openstreetmap.org',
+    'https://*.cloudflare.com/',
+    'https://bundle.js:*',
+    'ws://127.0.0.1:*/',
+    'ws://localhost:*/',
+];
 const fontSrcUrls = ['fonts.googleapis.com', 'fonts.gstatic.com'];
 
 // Helmet is a collection of middleware functions that help secure your Express apps by setting various HTTP headers
