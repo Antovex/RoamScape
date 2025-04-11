@@ -13032,16 +13032,6 @@ if (userPasswordForm) {
     };
   }());
 }
-
-// console.log(bookBtn);
-
-// if (bookBtn)
-//     bookBtn.addEventListener('click', (e) => {
-//         // e.target.textContent = 'Processing...';
-//         const { tourId } = e.target.dataset;
-//         bookTour(tourId);
-//     });
-
 if (bookBtns) {
   bookBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
