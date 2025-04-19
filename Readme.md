@@ -1,10 +1,20 @@
 # 🌍 RoamScape  
+🔗[Live Demo](https://roam-scape.vercel.app/)
 
 ## 🏞️ Introduction  
 
 **RoamScape** is a modern tour booking application designed to help users explore and book incredible travel experiences around the world. Whether you're looking for an adventure in the mountains, a relaxing beach retreat, or an urban exploration, RoamScape makes it easy to find and book your next journey.  
 
 Built with a **scalable Node.js backend and a dynamic frontend**, RoamScape ensures a seamless user experience for travelers and tour providers alike.  
+
+---
+
+### 🧪Test Account
+For a quick test drive, use the following credentials:
+
+**Username**: laura@example.com
+
+**Password**: test1234
 
 ---
 
